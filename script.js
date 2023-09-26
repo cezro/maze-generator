@@ -1,55 +1,60 @@
 const confirmButton = document.querySelector("#confirm_button");
 const container = document.querySelector("#container");
 
-confirmButton.addEventListener("click", () => {
-  const rows = document.querySelector("#row_input").value;
-  const columns = document.querySelector("#column_input").value;
+confirmButton.addEventListener("click", async () => {
+  const width = document.querySelector("#width_input").value;
+  const height = document.querySelector("#height_input").value;
+  // Create a grid filled with walls
+  const grid = Array.from({ length: height }, () =>
+    Array.from({ length: width }, () => true)
+  );
 
-  const maze = [];
-  for (let i = 0; i < rows; i++) {
-    maze[i] = [];
-    for (let j = 0; j < columns; j++) {
-      maze[i][j] = 1;
+  // Initialize starting point
+  const startRow = Number(document.querySelector("#row_start").value);
+  const startCol = Number(document.querySelector("#column_start").value);
+
+  // Mark the starting point as a passage
+  grid[startRow][startCol] = false;
+  console.log(grid);
+
+  // Helper function to get neighbors of a cell
+  function getNeighbors(row, col) {
+    const neighbors = [];
+    if (row >= 2) neighbors.push([row - 2, col]);
+    if (row <= height - 3) neighbors.push([row + 2, col]);
+    if (col >= 2) neighbors.push([row, col - 2]);
+    if (col <= width - 3) neighbors.push([row, col + 2]);
+    return neighbors;
+  }
+
+  // Function to generate the maze
+  function generateMaze(row, col) {
+    const neighbors = getNeighbors(row, col);
+    neighbors.sort(() => Math.random() - 0.5);
+
+    for (const [nextRow, nextCol] of neighbors) {
+      if (grid[nextRow][nextCol]) {
+        const wallRow = (row + nextRow) / 2;
+        const wallCol = (col + nextCol) / 2;
+        grid[wallRow][wallCol] = false;
+        grid[nextRow][nextCol] = false;
+        generateMaze(nextRow, nextCol);
+      }
     }
   }
 
-  function generateMaze(x, y) {
-    if (x < 0 || y < 0 || x >= rows || y >= columns || maze[x][y] === 0) {
-      return;
+  // Start generating the maze from the starting point
+  generateMaze(startRow, startCol);
+
+  // Print the maze (for demonstration purposes)
+  for (let i = 0; i < height; i++) {
+    let row = "";
+    for (let j = 0; j < width; j++) {
+      row += grid[i][j] ? "⬛" : "⬜";
     }
-
-    maze[x][y] = 0;
-
-    const directions = [
-      [-1, 0], // Up
-      [1, 0], // Down
-      [0, -1], // Left
-      [0, 1], // Right
-    ];
-
-    // Shuffle the directions randomly
-    for (let i = directions.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [directions[i], directions[j]] = [directions[j], directions[i]];
-    }
-
-    // Recursively visit neighboring cells
-    for (const [dx, dy] of directions) {
-      generateMaze(x + 2 * dx, y + 2 * dy);
-    }
-  }
-
-  generateMaze(0, 0);
-  maze[0][1] = 0; // Opening at the beginning (start)
-  maze[rows - 1][columns - 2] = 0; // Opening at the end (finish)
-  console.log("Maze Generated.", maze);
-  maze.forEach((row) => {
-    const convertedRow = row.map((element) => {
-      return element === 1 ? "⌧" : "☐";
-    });
-    console.log(convertedRow.join(""));
+    console.log(row);
     const rowDisplay = document.createElement("div");
-    rowDisplay.textContent = convertedRow.join("");
+    rowDisplay.textContent = row;
     container.appendChild(rowDisplay);
-  });
+  }
 });
