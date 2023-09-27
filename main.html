@@ -6,18 +6,43 @@
     <title>Maze Generator</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <div>
-      Maze Generator
+  <body class="">
+    <h1>Maze Generator</h1>
+
+    <div id="input_container">
       <input id="height_input" type="number" placeholder="Height" />
       <input id="width_input" type="number" placeholder="Width" />
       <input id="column_start" type="number" placeholder="Starting Column" />
       <input id="row_start" type="number" placeholder="Starting Row" />
-      <button id="confirm_button">Generate</button>
     </div>
-    <div>
-      <div id="container"></div>
-    </div>
+    <button id="confirm_button">Generate</button>
+    <div id="selector_container">
+      <p id="selector_text">Wall:</p>
+      <select id="wall_selector">
+        <option value="⬜">⬜</option>
+        <option value="⬛">⬛</option>
+        <option value="🟦">🟦</option>
+        <option value="🟩">🟩</option>
+        <option value="🟧">🟧</option>
+        <option value="🟫">🟫</option>
+        <option value="🟥">🟥</option>
+        <option value="🟨">🟨</option>
+        <option value="🟪">🟪</option>
+      </select>
+      <p id="selector_text">Path:</p>
+      <select id="path_selector">
+        <option value="⬜">⬜</option>
+        <option value="⬛">⬛</option>
+        <option value="🟦">🟦</option>
+        <option value="🟩">🟩</option>
+        <option value="🟧">🟧</option>
+        <option value="🟫">🟫</option>
+        <option value="🟥">🟥</option>
+        <option value="🟨">🟨</option>
+        <option value="🟪">🟪</option>
+      </select>
+  </div>
+    <div id="container"></div>
   </body>
   <script src="./script.js"></script>
 </html>

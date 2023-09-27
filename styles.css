@@ -1,3 +1,95 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+body {
+  background-image: url("./assets/neom-9hWJs7iblh8-unsplash.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 48px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  color: chocolate;
+}
+
+#input_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#input_container input {
+  margin-bottom: 10px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+#confirm_button {
+  width: 150px;
+  height: 75px;
+  border-radius: 24px;
+  font-size: 20px;
+  font-weight: 900;
+  color: brown;
+  background: wheat;
+  margin-top: 12px;
+  justify-self: center;
+  margin-bottom: 24px;
+}
+
+#confirm_button:hover {
+  background: chocolate;
+  color: wheat;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#input_container input {
+  display: block;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  background-color: wheat;
+  color: chocolate;
+}
+
+#input_container {
+  align-items: center;
+  padding: 10px;
+}
+
+#selector_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#selector_container select {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    padding: 4px;
+    background-color: wheat;
+    color: chocolate;
+}
+
+#selector_text {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    color: wheat;
+}
