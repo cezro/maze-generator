@@ -15,12 +15,15 @@
       <input id="column_start" type="number" placeholder="Starting Column" />
       <input id="row_start" type="number" placeholder="Starting Row" />
     </div>
-    <button id="confirm_button">Generate</button>
+    <div id="action_buttons">
+      <button id="confirm_button">Generate</button>
+      <button id="clear_button">Clear</button>
+    </div>
     <div id="selector_container">
       <p id="selector_text">Wall:</p>
       <select id="wall_selector">
-        <option value="⬜">⬜</option>
         <option value="⬛">⬛</option>
+        <option value="⬜">⬜</option>
         <option value="🟦">🟦</option>
         <option value="🟩">🟩</option>
         <option value="🟧">🟧</option>
@@ -41,8 +44,9 @@
         <option value="🟨">🟨</option>
         <option value="🟪">🟪</option>
       </select>
-  </div>
-    <div id="container"></div>
+    </div>
+    <div id="container">
+    </div>
   </body>
   <script src="./script.js"></script>
 </html>

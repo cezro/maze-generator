@@ -1,4 +1,9 @@
+const clearButton = document.getElementById("clear_button");
 
+clearButton.addEventListener("click", function () {
+  const container = document.getElementById("container");
+  container.innerHTML = "";
+});
 
 const confirmButton = document.querySelector("#confirm_button");
 const container = document.querySelector("#container");
@@ -11,17 +16,14 @@ confirmButton.addEventListener("click", async () => {
     Array.from({ length: width }, () => true)
   );
 
-  
   const startRow = Number(document.querySelector("#row_start").value);
   const startCol = Number(document.querySelector("#column_start").value);
-  
 
-    grid[startRow][startCol] = false;
-
+  grid[startRow][startCol] = false;
 
   const wallColor = document.querySelector("#wall_selector").value;
   const pathColor = document.querySelector("#path_selector").value;
-  
+
   function getNeighbors(row, col) {
     const neighbors = [];
     if (row >= 2) neighbors.push([row - 2, col]);
@@ -48,13 +50,19 @@ confirmButton.addEventListener("click", async () => {
 
   generateMaze(startRow, startCol);
 
+  const titleDisplay = document.createElement("div");
+  titleDisplay.textContent = `MAZE ${width}x${height}`;
+  container.appendChild(titleDisplay);
+
   for (let i = 0; i < height; i++) {
     let row = "";
     for (let j = 0; j < width; j++) {
       row += grid[i][j] ? wallColor : pathColor;
     }
     const rowDisplay = document.createElement("div");
+
     rowDisplay.textContent = row;
+
     container.appendChild(rowDisplay);
   }
 });
